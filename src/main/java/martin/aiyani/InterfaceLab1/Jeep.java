@@ -49,7 +49,7 @@ public class Jeep extends Car {
         if (answer.equals("yes") && fuelLevel > 1) {
             System.out.println("Rugged engine roaring to life\n");
             drive();
-        } else if (answer.equals("yes")){
+        } else if (answer.equals("no")){
             cowardEnd();
             System.exit(0);
         }
@@ -68,25 +68,17 @@ public class Jeep extends Car {
         if (fuelLevel <= 1) {
             System.out.println("You don't have enough gas run! Pushing to nearest gas station...\n");
         }
-
     }
 
     @Override
     public void refuel() {
         fuelLevel = 0;
-        do{
-            System.out.println("Refueling..." + fuelLevel + " gallons.\n");
-            fuelLevel++;
-
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }while(fuelLevel<21);
-        System.out.println("You're all fueled and ready to take on the zombie invasion!\n");
-
-
+        GasStation gasStation = new GasStation();
+        if (fuelLevel == 0) {
+            gasStation.driveToStation();
+            gasStation.refuelCars();
+            gasStation.driveBack();
+        }
     }
 
     public void drive() {
@@ -103,10 +95,10 @@ public class Jeep extends Car {
                 e.printStackTrace();
             }
             if(fuelLevel ==0){
-                turnOff();
 
         }
 
         }
     }
+
 }

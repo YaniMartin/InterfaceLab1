@@ -65,21 +65,13 @@ public class MillenniumFalcon extends Car {
 
     }
 
-    //assign fuelLevel to i??
     @Override
     public void refuel() {
         fuelLevel = 0;
-        do{
-            System.out.println("Refueling..." + fuelLevel + " watts.\n");
-            fuelLevel+=10000;
-
-            try {
-                Thread.sleep(400);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while(fuelLevel<100001);
-        System.out.println("You're all powered up and ready to fly!...if only Chewie can fix that autopilot...\n");
+        PowerStation powerStation = new PowerStation();
+        powerStation.driveToStation();
+        powerStation.refuelCars();
+        powerStation.driveBack();
 
 
     }
@@ -89,7 +81,7 @@ public class MillenniumFalcon extends Car {
         distanceDriven = 0;
 
         for(int i=0;i<100001; i+=10000){
-            System.out.println("You've flown " + distanceDriven + " and have " + fuelLevel + " watts of power.\n");
+            System.out.println("You've flown " + distanceDriven + " light years and have " + fuelLevel + " watts of power.\n");
             distanceDriven++;
             fuelLevel-=10000;
             try {
@@ -99,11 +91,11 @@ public class MillenniumFalcon extends Car {
             }
         }
             if(fuelLevel ==0){
-                turnOff();
 
 
             }
 
         }
-    }
+
+}
 

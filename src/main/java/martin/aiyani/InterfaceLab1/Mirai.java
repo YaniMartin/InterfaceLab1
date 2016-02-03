@@ -59,7 +59,7 @@ public class Mirai extends Car {
     @Override
     public void turnOff() {
         if (fuelLevel <= 0) {
-            System.out.println("You don't have enough hydrogen to turn on! You must refuel! Sinking to hydrogen station...\n");
+            System.out.println("You don't have enough hydrogen to turn on! Powering off...\n");
 
         }
 
@@ -69,17 +69,13 @@ public class Mirai extends Car {
     @Override
     public void refuel() {
         fuelLevel = 0;
-        do{
-            System.out.println("Refueling..." + fuelLevel + " gallons.\n");
-            fuelLevel+=3;
+        HydrogenStation hydrogenStation = new HydrogenStation();
+        if (fuelLevel == 0){
+            hydrogenStation.driveToStation();
+            hydrogenStation.refuelCars();
+            hydrogenStation.driveBack();
 
-            try {
-                Thread.sleep(400);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while(fuelLevel<36);
-        System.out.println("You're all fueled and ready to float away!\n");
+        }
 
     }
 
@@ -98,11 +94,11 @@ public class Mirai extends Car {
             }
 
             if(fuelLevel ==0){
-                turnOff();
 
 
             }
 
         }
     }
+
 }
